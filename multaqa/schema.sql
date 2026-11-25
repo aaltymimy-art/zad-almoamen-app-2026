@@ -8,7 +8,7 @@ create table if not exists public.members (
   phone text not null check (char_length(phone) between 5 and 30),
   relation text not null check (relation in (
     'الرابطة 1','الرابطة 2','الرابطة 3','الرابطة 4','الرابطة 5',
-    'الرابطة 6','الرابطة 7','الرابطة 8','الرابطة 9','الرابطة 10'
+    'الرابطة 6','الرابطة 7'
   )),
   role_in_relation text not null check (char_length(role_in_relation) between 1 and 1000),
   created_at timestamptz not null default now()
