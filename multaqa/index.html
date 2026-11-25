@@ -13,7 +13,7 @@ main{max-width:1050px;margin:26px auto;padding:0 15px}.intro{text-align:center;m
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
 .card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px 12px;text-align:center;box-shadow:0 4px 14px #173b2a0d}
 .card button{border:0;background:none;color:var(--g);font:inherit;font-weight:bold;cursor:pointer;width:100%}
-.symbol{width:50px;height:50px;margin:0 auto 10px;border-radius:50%;background:#edf2ec;color:var(--g);display:grid;place-items:center;font-size:22px}
+.symbol{width:62px;height:62px;margin:0 auto 10px;border-radius:50%;background-color:#edf2ec;background-image:url('assets/logos-sprite.jpg');background-size:400% 200%;background-repeat:no-repeat;border:1px solid var(--line)}
 .panel{display:none;background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px;margin-top:22px}
 .panel.active{display:block}.panel h2{margin-top:0}
 label{display:block;margin:13px 0 6px;font-weight:bold}
@@ -74,7 +74,7 @@ const $ = id => document.getElementById(id);
 let selectedRelation = '', allMembers = [];
 relationNames.forEach((name,i)=>{
  const card=document.createElement('div');card.className='card';
- const icon=document.createElement('div');icon.className='symbol';icon.textContent='✦';
+ const icon=document.createElement('div');icon.className='symbol';icon.setAttribute('aria-label','شعار '+name);icon.style.backgroundPosition=`${(i%4)*100/3}% ${Math.floor(i/4)*100}%`;
  const btn=document.createElement('button');btn.type='button';btn.textContent=name;
  btn.onclick=()=>{selectedRelation=name;$('formTitle').textContent='استمارة التسجيل — '+name;$('registration').classList.add('active');$('registration').scrollIntoView({behavior:'smooth'});};
  card.append(icon,btn);$('links').append(card);
