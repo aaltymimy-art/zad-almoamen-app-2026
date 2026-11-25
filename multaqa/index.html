@@ -65,8 +65,8 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // ضع رابط مشروع Supabase ومفتاح anon/public هنا بعد إنشاء قاعدة البيانات.
 // هذا المفتاح مصمم للاستخدام بالواجهة، وتعتمد الحماية على سياسات RLS في schema.sql.
-const SUPABASE_URL = 'https://pfosjvbccliwrcioejsy.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_cfGgOIxtthpu7OvSg0_SLA_A4_pBuTN';
+const SUPABASE_URL = 'https://dqnhkudzrdxamtpepnnih.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_9gIJxlGgDe6vNPTV6dglxQ_n1KaiY2_';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('ضع-') && Boolean(SUPABASE_ANON_KEY) && !SUPABASE_ANON_KEY.includes('ضع-');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const relationNames = Array.from({length:7},(_,i)=>'الرابطة '+(i+1));
