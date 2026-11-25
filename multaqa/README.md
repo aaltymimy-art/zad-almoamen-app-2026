@@ -22,10 +22,14 @@
 2. افتح SQL Editor وشغّل محتويات `multaqa/schema.sql`.
 3. تم إعداد Project URL ومفتاح `sb_publishable_` في أعلى `multaqa/index.html` لهذا المشروع. لا تستبدلهما إلا عند تغيير مشروع Supabase.
 4. لا تضع Service Role Key في الواجهة مطلقاً.
-5. أنشئ حساب مدير من Authentication > Users.
-6. أضف UUID حساب المدير إلى جدول `public.admins` من SQL Editor:
-   `insert into public.admins (user_id) values ('UUID-OF-ADMIN');`
-7. اختبر إرسال تسجيل كزائر، ثم الدخول بحساب المدير، والبحث والتعديل والحذف والتصدير.
+5. أنشئ حساب المدير من Authentication > Users عبر Add user، باستخدام بريد إلكتروني وكلمة مرور تملكهما. فعّل تأكيد البريد إذا طلبت الواجهة ذلك أو استخدم خيار تأكيد المستخدم يدوياً.
+6. انسخ UUID الخاص بالمستخدم من جدول Users.
+7. في SQL Editor نفّذ الأمر التالي بعد استبدال UUID بالقيمة الحقيقية:
+   `insert into public.admins (user_id) values ('UUID-OF-ADMIN') on conflict do nothing;`
+8. اختبر إرسال تسجيل كزائر، ثم الدخول بحساب المدير، والبحث والتعديل والحذف والتصدير.
+
+### إعداد حساب المدير (مهم)
+لا توجد كلمة مرور مدير افتراضية داخل الموقع. يجب إنشاء مستخدم في Supabase Auth أولاً، ثم إضافة UUID الخاص به إلى جدول admins. لا ترسل كلمة المرور في المحادثة.
 
 ## إعداد النشر على GitHub Pages
 ملف النشر موجود ويعمل عند الدفع إلى فرع `multaqa-alilm-waldeen)، بشرط تفعيل GitHub Pages:
