@@ -52,3 +52,11 @@ on public.admins for select to authenticated
 using (user_id = auth.uid());
 
 -- لا توجد سياسة تسجيل عامة أو تعديل عام لجدول admins.
+
+
+-- صلاحيات الوصول عبر Supabase Data API؛ وتبقى سياسات RLS هي المتحكمة بالصفوف
+ grant usage on schema public to anon, authenticated;
+ grant insert on table public.members to anon, authenticated;
+ grant select, update, delete on table public.members to authenticated;
+ grant usage, select on sequence public.members_id_seq to anon, authenticated;
+ grant select on table public.admins to authenticated;
