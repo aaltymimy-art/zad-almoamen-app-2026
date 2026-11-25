@@ -69,7 +69,7 @@ const SUPABASE_URL = 'ضع-رابط-مشروع-Supabase-هنا';
 const SUPABASE_ANON_KEY = 'ضع-مفتاح-anon-public-هنا';
 const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('ضع-');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
-const relationNames = Array.from({length:10},(_,i)=>'الرابطة '+(i+1));
+const relationNames = Array.from({length:7},(_,i)=>'الرابطة '+(i+1));
 const $ = id => document.getElementById(id);
 let selectedRelation = '', allMembers = [];
 relationNames.forEach((name,i)=>{
