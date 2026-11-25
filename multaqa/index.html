@@ -67,7 +67,7 @@ import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 // هذا المفتاح مصمم للاستخدام بالواجهة، وتعتمد الحماية على سياسات RLS في schema.sql.
 const SUPABASE_URL = 'ضع-رابط-مشروع-Supabase-هنا';
 const SUPABASE_ANON_KEY = 'ضع-مفتاح-anon-public-هنا';
-const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('ضع-');
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('ضع-') && Boolean(SUPABASE_ANON_KEY) && !SUPABASE_ANON_KEY.includes('ضع-');
 const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const relationNames = Array.from({length:7},(_,i)=>'الرابطة '+(i+1));
 const $ = id => document.getElementById(id);
@@ -84,11 +84,17 @@ $('closeForm').onclick=()=>$('registration').classList.remove('active');
 function status(id,msg,ok=false){const el=$(id);el.textContent=msg;el.className='status '+(ok?'ok':'err');}
 $('memberForm').addEventListener('submit',async e=>{
  e.preventDefault();
+ if(!selectedRelation){status('formStatus','اختَر الرابطة أولاً من البطاقات أعلاه.');return;}
  if(!supabase){status('formStatus','قاعدة البيانات غير مربوطة بعد. يلزم إدخال رابط Supabase والمفتاح العام بعد تنفيذ ملف إعداد قاعدة البيانات.');return;}
+ const submit=$('memberForm').querySelector('button[type="submit"]');
  const payload={full_name:$('fullName').value.trim(),age:Number($('age').value),phone:$('phone').value.trim(),relation:selectedRelation,role_in_relation:$('role').value.trim()};
- const {error}=await supabase.from('members').insert(payload);
- if(error){status('formStatus','تعذر حفظ التسجيل: '+error.message);return;}
- $('memberForm').reset();status('formStatus','تم استلام التسجيل وحفظه بنجاح.',true);
+ submit.disabled=true;submit.textContent='جارٍ حفظ التسجيل...';
+ try{
+  const {error}=await supabase.from('members').insert(payload);
+  if(error){status('formStatus','تعذر حفظ التسجيل: '+error.message);return;}
+  $('memberForm').reset();status('formStatus','تم استلام التسجيل وحفظه بنجاح.',true);
+ }catch(err){status('formStatus','تعذر الاتصال بقاعدة البيانات. تحقق من الإنترنت وحاول مجدداً.');}
+ finally{submit.disabled=false;submit.textContent='إرسال التسجيل';}
 });
 $('loginForm').addEventListener('submit',async e=>{
  e.preventDefault();
