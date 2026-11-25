@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ملتقى العلم والدين</title>
+<style>
+:root{--green:#123d32;--gold:#c9a64a;--paper:#f6f4ed;--ink:#1d2925}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--paper);color:var(--ink)}
+header{background:linear-gradient(135deg,#0d3028,#1d5948);color:white;padding:34px 18px;text-align:center;border-bottom:5px solid var(--gold)}
+.logo{width:76px;height:76px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;color:var(--gold);font-size:28px}
+h1{margin:8px 0;font-size:26px}header p{margin:8px 0 0;color:#e7dfc8}
+main{max-width:980px;margin:28px auto;padding:0 16px}.intro{text-align:center;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
+.link{background:white;border:1px solid #e4dece;border-radius:16px;padding:22px 12px;text-align:center;box-shadow:0 4px 14px #173b2a10}
+.link button{border:0;background:transparent;color:var(--green);font:inherit;font-weight:bold;cursor:pointer;width:100%}
+.symbol{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:#edf2ec;color:var(--green);display:grid;place-items:center;font-size:23px}
+.panel{display:none;background:white;border:1px solid #e5dfd0;border-radius:16px;padding:22px;margin-top:22px}
+.panel.active{display:block}label{display:block;margin:13px 0 6px;font-weight:bold}
+input,textarea{width:100%;padding:12px;border:1px solid #d8d2c4;border-radius:9px;font:inherit}
+textarea{min-height:90px} .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.primary,.secondary{padding:11px 18px;border-radius:9px;border:0;font:inherit;cursor:pointer}
+.primary{background:var(--green);color:white}.secondary{background:#eee9dc;color:var(--ink)}
+.note{font-size:13px;color:#6a716c;line-height:1.8}footer{text-align:center;padding:24px;color:#6e756f}
+</style></head>
+<body>
+<header><div class="logo">م</div><h1>ملتقى العلم والدين</h1><p>بوابة تسجيل أعضاء الروابط</p></header>
+<main><div class="intro"><h2>اختر رابطتك</h2><p>اضغط على اسم الرابطة لفتح استمارة التسجيل</p></div>
+<section class="grid" id="links"></section>
+<section class="panel" id="registration">
+<h2 id="formTitle">استمارة التسجيل</h2>
+<form id="memberForm">
+<label for="fullName">الاسم الكامل</label><input id="fullName" required maxlength="120">
+<label for="age">العمر</label><input id="age" type="number" min="1" max="120" required>
+<label for="phone">رقم الهاتف</label><input id="phone" type="tel" required maxlength="30">
+<label for="role">ما هو ملفك داخل الرابطة؟</label><textarea id="role" required maxlength="1000"></textarea>
+<div class="actions"><button class="primary" type="submit">إرسال التسجيل</button><button class="secondary" type="button" id="closeForm">رجوع</button></div>
+<p class="note">هذه نسخة واجهة أولية. لم يتم ربطها بعد بقاعدة بيانات مركزية، لذلك لا ترسل بيانات أعضاء حقيقية قبل إكمال الربط وتأمين لوحة الإدارة.</p>
+</form></section></main>
+<footer>ملتقى العلم والدين</footer>
+<script>
+const links=document.getElementById('links'), panel=document.getElementById('registration'), title=document.getElementById('formTitle');
+let selected='';
+for(let i=1;i<=10;i++){const name='الرابطة '+i;const card=document.createElement('div');card.className='link';card.innerHTML='<div class="symbol">✦</div><button type="button">'+name+'</button>';card.querySelector('button').addEventListener('click',()=>{selected=name;title.textContent='استمارة التسجيل — '+name;panel.classList.add('active');panel.scrollIntoView({behavior:'smooth',block:'start'});});links.appendChild(card);}
+document.getElementById('closeForm').onclick=()=>panel.classList.remove('active');
+document.getElementById('memberForm').addEventListener('submit',e=>{e.preventDefault();alert('الواجهة جاهزة، لكن حفظ التسجيل المركزي لم يُفعّل بعد.');});
+</script></body></html>
