@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ملتقى العلم والدين | تسجيل العاملين</title>
+<style>
+:root{--blue:#078db5;--cyan:#dff6fc;--ink:#17485b}*{box-sizing:border-box}
+body{margin:0;background:#f3fbfd;color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+header{background:linear-gradient(135deg,#078db5,#55c5df);color:white;text-align:center;padding:25px 16px}
+.logo{width:105px;height:105px;display:inline-flex;align-items:center;justify-content:center;background:white;color:#078db5;border-radius:18px;font-size:13px}
+h1{font-size:22px;margin:12px 0 5px}header p{margin:0;font-size:14px}main{max-width:850px;margin:22px auto;padding:0 14px}
+h2{font-size:18px;margin:0 0 14px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{border:1px solid #b9e7f2;background:white;border-radius:15px;padding:18px 10px;text-align:center;color:var(--ink);font-weight:bold;min-height:82px;cursor:pointer;box-shadow:0 3px 10px #0b789018}
+.panel{display:none;background:white;border:1px solid #c6eaf3;border-radius:16px;padding:18px;margin-top:18px}
+label{display:block;font-size:14px;font-weight:bold;margin:13px 0 6px}
+input,textarea{width:100%;padding:12px;border:1px solid #b7dce6;border-radius:10px;font:inherit;background:#fbfeff}
+textarea{min-height:90px;resize:vertical}button{border:0;border-radius:10px;background:var(--blue);color:white;padding:12px 18px;font:inherit;font-weight:bold;margin-top:15px;cursor:pointer}
+.secondary{background:#e8f7fb;color:var(--ink);margin-right:8px}.note{font-size:12px;color:#587987;line-height:1.7;margin-top:14px}
+#status{font-size:14px;color:#087b50;margin-top:12px}@media(min-width:650px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style></head><body>
+<header><div class="logo">مكان شعار المؤسسة</div><h1>ملتقى العلم والدين</h1><p>نظام تسجيل بيانات العاملين في الروابط</p></header>
+<main><h2>اختر رابطتك</h2><div class="grid" id="links"></div>
+<section class="panel" id="formPanel"><h2 id="formTitle">تسجيل بيانات العامل</h2>
+<form id="memberForm">
+<label for="name">الاسم الكامل</label><input id="name" required autocomplete="name" placeholder="اكتب الاسم الكامل">
+<label for="age">العمر</label><input id="age" required type="number" min="1" max="110" placeholder="اكتب العمر">
+<label for="phone">رقم الهاتف</label><input id="phone" required type="tel" inputmode="tel" placeholder="07xxxxxxxxx">
+<label for="role">شنو الملف اللي لازمه أنت داخل الرابطة مالتك؟</label><textarea id="role" required placeholder="اكتب طبيعة عملك أو الملف المسؤول عنه داخل الرابطة"></textarea>
+<button type="submit">حفظ البيانات التجريبية</button><button class="secondary" type="button" id="back">رجوع للروابط</button><div id="status" role="status"></div></form>
+<p class="note">هذه نسخة معاينة فقط. البيانات تُحفظ على نفس المتصفح والجهاز، ولا تصل حالياً إلى الإدارة أو إلى قاعدة بيانات مشتركة.</p></section></main>
+<script>
+const names=Array.from({length:10},(_,i)=>'الرابطة '+(i+1)),links=document.getElementById('links'),panel=document.getElementById('formPanel');let selected='';
+names.forEach(n=>{const b=document.createElement('button');b.className='card';b.textContent=n;b.onclick=()=>{selected=n;document.getElementById('formTitle').textContent='تسجيل بيانات العامل — '+n;panel.style.display='block';panel.scrollIntoView({behavior:'smooth'});};links.appendChild(b);});
+document.getElementById('back').onclick=()=>panel.style.display='none';
+document.getElementById('memberForm').onsubmit=e=>{e.preventDefault();const item={association:selected,name:document.getElementById('name').value.trim(),age:document.getElementById('age').value,phone:document.getElementById('phone').value.trim(),role:document.getElementById('role').value.trim(),createdAt:new Date().toISOString()};const all=JSON.parse(localStorage.getItem('members_demo')||'[]');all.push(item);localStorage.setItem('members_demo',JSON.stringify(all));document.getElementById('status').textContent='تم حفظ البيانات على هذا الجهاز للمعاينة.';e.target.reset();};
+</script></body></html>
