@@ -1,47 +1,151 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ملتقى العلم والدين</title>
 <style>
-:root{--green:#123d32;--gold:#c9a64a;--paper:#f6f4ed;--ink:#1d2925}
+:root{--g:#123d32;--g2:#1d5948;--gold:#c9a64a;--paper:#f6f4ed;--ink:#1d2925;--line:#e4dece}
 *{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--paper);color:var(--ink)}
-header{background:linear-gradient(135deg,#0d3028,#1d5948);color:white;padding:34px 18px;text-align:center;border-bottom:5px solid var(--gold)}
-.logo{width:76px;height:76px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 12px;color:var(--gold);font-size:28px}
-h1{margin:8px 0;font-size:26px}header p{margin:8px 0 0;color:#e7dfc8}
-main{max-width:980px;margin:28px auto;padding:0 16px}.intro{text-align:center;margin-bottom:22px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
-.link{background:white;border:1px solid #e4dece;border-radius:16px;padding:22px 12px;text-align:center;box-shadow:0 4px 14px #173b2a10}
-.link button{border:0;background:transparent;color:var(--green);font:inherit;font-weight:bold;cursor:pointer;width:100%}
-.symbol{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;background:#edf2ec;color:var(--green);display:grid;place-items:center;font-size:23px}
-.panel{display:none;background:white;border:1px solid #e5dfd0;border-radius:16px;padding:22px;margin-top:22px}
-.panel.active{display:block}label{display:block;margin:13px 0 6px;font-weight:bold}
-input,textarea{width:100%;padding:12px;border:1px solid #d8d2c4;border-radius:9px;font:inherit}
-textarea{min-height:90px} .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.primary,.secondary{padding:11px 18px;border-radius:9px;border:0;font:inherit;cursor:pointer}
-.primary{background:var(--green);color:white}.secondary{background:#eee9dc;color:var(--ink)}
-.note{font-size:13px;color:#6a716c;line-height:1.8}footer{text-align:center;padding:24px;color:#6e756f}
+header{background:linear-gradient(135deg,#0d3028,#1d5948);color:#fff;padding:30px 16px;text-align:center;border-bottom:5px solid var(--gold)}
+.logo{width:70px;height:70px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:auto;color:var(--gold);font-size:27px}
+h1{margin:10px 0 6px;font-size:26px}header p{margin:0;color:#e7dfc8}
+main{max-width:1050px;margin:26px auto;padding:0 15px}.intro{text-align:center;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px 12px;text-align:center;box-shadow:0 4px 14px #173b2a0d}
+.card button{border:0;background:none;color:var(--g);font:inherit;font-weight:bold;cursor:pointer;width:100%}
+.symbol{width:50px;height:50px;margin:0 auto 10px;border-radius:50%;background:#edf2ec;color:var(--g);display:grid;place-items:center;font-size:22px}
+.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:15px;padding:20px;margin-top:22px}
+.panel.active{display:block}.panel h2{margin-top:0}
+label{display:block;margin:13px 0 6px;font-weight:bold}
+input,textarea,select{width:100%;padding:12px;border:1px solid #d8d2c4;border-radius:9px;font:inherit;background:#fff}
+textarea{min-height:80px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+button.primary,button.secondary,button.danger{padding:11px 17px;border:0;border-radius:9px;font:inherit;cursor:pointer}
+.primary{background:var(--g);color:#fff}.secondary{background:#eee9dc;color:var(--ink)}.danger{background:#9b3030;color:white}
+.note{font-size:13px;color:#68716b;line-height:1.8}.status{margin-top:12px;padding:10px;border-radius:8px;display:none;line-height:1.7}
+.status.ok{display:block;background:#e9f5eb;color:#1e6030}.status.err{display:block;background:#fff0ed;color:#922d22}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.toolbar>*{flex:1;min-width:150px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.stat{background:#f4f2e9;border-radius:10px;padding:14px;text-align:center}.stat b{display:block;font-size:23px;color:var(--g)}
+.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:720px;background:white}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:right}th{background:#edf2ec;color:var(--g)}
+.smallbtn{border:0;border-radius:7px;padding:7px 10px;margin:2px;cursor:pointer}.edit{background:#eee9dc}.del{background:#f8e5e2;color:#8c241c}
+footer{text-align:center;padding:24px;color:#6e756f}
+@media(max-width:600px){h1{font-size:22px}.panel{padding:15px}}
 </style></head>
 <body>
-<header><div class="logo">م</div><h1>ملتقى العلم والدين</h1><p>بوابة تسجيل أعضاء الروابط</p></header>
-<main><div class="intro"><h2>اختر رابطتك</h2><p>اضغط على اسم الرابطة لفتح استمارة التسجيل</p></div>
+<header><div class="logo">م</div><h1>ملتقى العلم والدين</h1><p>بوابة تسجيل وإدارة أعضاء الروابط</p></header>
+<main>
+<div class="intro"><h2>اختر رابطتك</h2><p>اضغط على اسم الرابطة لفتح استمارة التسجيل</p></div>
 <section class="grid" id="links"></section>
 <section class="panel" id="registration">
 <h2 id="formTitle">استمارة التسجيل</h2>
 <form id="memberForm">
-<label for="fullName">الاسم الكامل</label><input id="fullName" required maxlength="120">
+<label for="fullName">الاسم الكامل</label><input id="fullName" required maxlength="120" autocomplete="name">
 <label for="age">العمر</label><input id="age" type="number" min="1" max="120" required>
-<label for="phone">رقم الهاتف</label><input id="phone" type="tel" required maxlength="30">
+<label for="phone">رقم الهاتف</label><input id="phone" type="tel" required maxlength="30" autocomplete="tel">
 <label for="role">ما هو ملفك داخل الرابطة؟</label><textarea id="role" required maxlength="1000"></textarea>
 <div class="actions"><button class="primary" type="submit">إرسال التسجيل</button><button class="secondary" type="button" id="closeForm">رجوع</button></div>
-<p class="note">هذه نسخة واجهة أولية. لم يتم ربطها بعد بقاعدة بيانات مركزية، لذلك لا ترسل بيانات أعضاء حقيقية قبل إكمال الربط وتأمين لوحة الإدارة.</p>
-</form></section></main>
-<footer>ملتقى العلم والدين</footer>
-<script>
-const links=document.getElementById('links'), panel=document.getElementById('registration'), title=document.getElementById('formTitle');
-let selected='';
-for(let i=1;i<=10;i++){const name='الرابطة '+i;const card=document.createElement('div');card.className='link';card.innerHTML='<div class="symbol">✦</div><button type="button">'+name+'</button>';card.querySelector('button').addEventListener('click',()=>{selected=name;title.textContent='استمارة التسجيل — '+name;panel.classList.add('active');panel.scrollIntoView({behavior:'smooth',block:'start'});});links.appendChild(card);}
-document.getElementById('closeForm').onclick=()=>panel.classList.remove('active');
-document.getElementById('memberForm').addEventListener('submit',e=>{e.preventDefault();alert('الواجهة جاهزة، لكن حفظ التسجيل المركزي لم يُفعّل بعد.');});
+<div id="formStatus" class="status" role="status"></div>
+</form></section>
+<section class="panel" id="admin">
+<h2>لوحة إدارة الروابط</h2>
+<div id="loginArea">
+<p>دخول الإدارة</p><form id="loginForm">
+<label for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" type="email" required autocomplete="username">
+<label for="adminPassword">كلمة المرور</label><input id="adminPassword" type="password" required autocomplete="current-password">
+<div class="actions"><button class="primary">دخول</button></div><div id="loginStatus" class="status"></div>
+</form></div>
+<div id="dashboard" hidden>
+<div class="stats" id="stats"></div>
+<div class="toolbar"><select id="filter"><option value="">كل الروابط</option></select><input id="search" placeholder="بحث بالاسم أو الهاتف"><button class="primary" id="export">تصدير Excel</button><button class="secondary" id="logout">تسجيل خروج</button></div>
+<div class="tablewrap"><table><thead><tr><th>الاسم</th><th>العمر</th><th>الهاتف</th><th>الرابطة</th><th>الملف داخل الرابطة</th><th>الإجراءات</th></tr></thead><tbody id="members"></tbody></table></div>
+<p class="note">تعديل أو حذف أي سجل ينعكس على قاعدة البيانات المركزية مباشرة.</p>
+</div></section>
+</main><footer>ملتقى العلم والدين</footer>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// ضع رابط مشروع Supabase ومفتاح anon/public هنا بعد إنشاء قاعدة البيانات.
+// هذا المفتاح مصمم للاستخدام بالواجهة، وتعتمد الحماية على سياسات RLS في schema.sql.
+const SUPABASE_URL = 'ضع-رابط-مشروع-Supabase-هنا';
+const SUPABASE_ANON_KEY = 'ضع-مفتاح-anon-public-هنا';
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('ضع-');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+const relationNames = Array.from({length:10},(_,i)=>'الرابطة '+(i+1));
+const $ = id => document.getElementById(id);
+let selectedRelation = '', allMembers = [];
+relationNames.forEach((name,i)=>{
+ const card=document.createElement('div');card.className='card';
+ const icon=document.createElement('div');icon.className='symbol';icon.textContent='✦';
+ const btn=document.createElement('button');btn.type='button';btn.textContent=name;
+ btn.onclick=()=>{selectedRelation=name;$('formTitle').textContent='استمارة التسجيل — '+name;$('registration').classList.add('active');$('registration').scrollIntoView({behavior:'smooth'});};
+ card.append(icon,btn);$('links').append(card);
+ const opt=document.createElement('option');opt.value=name;opt.textContent=name;$('filter').append(opt);
+});
+$('closeForm').onclick=()=>$('registration').classList.remove('active');
+function status(id,msg,ok=false){const el=$(id);el.textContent=msg;el.className='status '+(ok?'ok':'err');}
+$('memberForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ if(!supabase){status('formStatus','قاعدة البيانات غير مربوطة بعد. يلزم إدخال رابط Supabase والمفتاح العام بعد تنفيذ ملف إعداد قاعدة البيانات.');return;}
+ const payload={full_name:$('fullName').value.trim(),age:Number($('age').value),phone:$('phone').value.trim(),relation:selectedRelation,role_in_relation:$('role').value.trim()};
+ const {error}=await supabase.from('members').insert(payload);
+ if(error){status('formStatus','تعذر حفظ التسجيل: '+error.message);return;}
+ $('memberForm').reset();status('formStatus','تم استلام التسجيل وحفظه بنجاح.',true);
+});
+$('loginForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ if(!supabase){status('loginStatus','أكمل ربط Supabase أولاً.');return;}
+ const {error}=await supabase.auth.signInWithPassword({email:$('adminEmail').value,password:$('adminPassword').value});
+ if(error){status('loginStatus','تعذر تسجيل الدخول. تحقق من البيانات وصلاحية حساب الإدارة.');return;}
+ await loadDashboard();
+});
+async function loadDashboard(){
+ const {data:userData}=await supabase.auth.getUser();
+ if(!userData?.user){$('loginArea').hidden=false;$('dashboard').hidden=true;return;}
+ const {data:admin}=await supabase.from('admins').select('user_id').eq('user_id',userData.user.id).maybeSingle();
+ if(!admin){await supabase.auth.signOut();status('loginStatus','هذا الحساب غير مخوّل كمدير.');return;}
+ $('loginArea').hidden=true;$('dashboard').hidden=false;await refreshMembers();
+}
+async function refreshMembers(){
+ const {data,error}=await supabase.from('members').select('*').order('created_at',{ascending:false});
+ if(error){alert('تعذر تحميل السجلات: '+error.message);return;}
+ allMembers=data||[];renderMembers();
+ const stats=[['كل الأعضاء',allMembers.length],...relationNames.map(n=>[n,allMembers.filter(m=>m.relation===n).length])];
+ $('stats').replaceChildren(...stats.map(([name,count])=>{const d=document.createElement('div');d.className='stat';const b=document.createElement('b');b.textContent=count;const s=document.createElement('span');s.textContent=name;d.append(b,s);return d;}));
+}
+function renderMembers(){
+ const rel=$('filter').value, q=$('search').value.trim().toLowerCase();
+ const rows=allMembers.filter(m=>(!rel||m.relation===rel)&&(!q||[m.full_name,m.phone,m.role_in_relation].some(v=>(v||'').toLowerCase().includes(q))));
+ $('members').replaceChildren(...rows.map(m=>{
+  const tr=document.createElement('tr');
+  [m.full_name,m.age,m.phone,m.relation,m.role_in_relation].forEach(v=>{const td=document.createElement('td');td.textContent=v??'';tr.append(td);});
+  const td=document.createElement('td');
+  const edit=document.createElement('button');edit.className='smallbtn edit';edit.textContent='تعديل';edit.onclick=()=>editMember(m);
+  const del=document.createElement('button');del.className='smallbtn del';del.textContent='حذف';del.onclick=()=>deleteMember(m);
+  td.append(edit,del);tr.append(td);return tr;
+ }));
+}
+async function editMember(m){
+ const full_name=prompt('الاسم الكامل',m.full_name);if(full_name===null)return;
+ const age=prompt('العمر',m.age);if(age===null)return;
+ const phone=prompt('رقم الهاتف',m.phone);if(phone===null)return;
+ const role_in_relation=prompt('ما هو ملفه داخل الرابطة؟',m.role_in_relation);if(role_in_relation===null)return;
+ const {error}=await supabase.from('members').update({full_name:full_name.trim(),age:Number(age),phone:phone.trim(),role_in_relation:role_in_relation.trim()}).eq('id',m.id);
+ if(error)alert('فشل التعديل: '+error.message);else await refreshMembers();
+}
+async function deleteMember(m){
+ if(!confirm('متأكد من حذف تسجيل '+m.full_name+'؟'))return;
+ const {error}=await supabase.from('members').delete().eq('id',m.id);
+ if(error)alert('فشل الحذف: '+error.message);else await refreshMembers();
+}
+$('filter').onchange=renderMembers;$('search').oninput=renderMembers;
+$('export').onclick=()=>{
+ const rel=$('filter').value;const rows=allMembers.filter(m=>!rel||m.relation===rel);
+ const cols=['الاسم الكامل','العمر','رقم الهاتف','الرابطة','الملف داخل الرابطة','تاريخ التسجيل'];
+ const esc=v=>'"'+String(v??'').replaceAll('"','""')+'"';
+ const csv='\uFEFF'+[cols,...rows.map(m=>[m.full_name,m.age,m.phone,m.relation,m.role_in_relation,m.created_at])].map(r=>r.map(esc).join(',')).join('\r\n');
+ const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=(rel||'كل-الروابط')+'.csv';a.click();URL.revokeObjectURL(url);
+};
+$('logout').onclick=async()=>{await supabase.auth.signOut();$('dashboard').hidden=true;$('loginArea').hidden=false;};
+$('admin').classList.add('active');
+if(supabase){supabase.auth.getSession().then(({data})=>{if(data.session)loadDashboard();});}
 </script></body></html>
